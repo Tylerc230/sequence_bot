@@ -1,0 +1,3 @@
+[submodule "lib/submodules/wishield"]
+	path = lib/submodules/wishield
+	url = git@github.com:Tylerc230/WiShield.git
