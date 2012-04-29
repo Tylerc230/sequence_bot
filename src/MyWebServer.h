@@ -1,6 +1,9 @@
 #include "Router.h"
-#include <string.h>
-#include <arduino.h>
+#include "arduino.h"
+extern "C"{
+	void webserver_init();
+	void webserver_appcall();
+}
 class MyWebServer
 {
 	public:
@@ -10,3 +13,5 @@ class MyWebServer
 	Router *router_;
 	
 };
+
+
