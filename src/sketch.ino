@@ -1,6 +1,4 @@
 #include "../../src/MyWebServer.h"
-#include "uip.h"
-#include "WiShield.h"
 #include "webserver.h"
 #include "MyConfig.h"
 static MyWebServer *webServer = NULL;
@@ -25,10 +23,8 @@ void webserver_appcall()
 
 void setup()
 {
-	WiFi.init();
 }
 
 void loop()
 {
-	WiFi.run();
 }

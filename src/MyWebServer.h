@@ -8,6 +8,7 @@ class MyWebServer
 {
 	public:
 	MyWebServer(Router *router);
+	void run();
 	void handleRequest(String *request);
 	private:
 	Router *router_;
