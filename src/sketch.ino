@@ -16,7 +16,7 @@ void loop()
 extern "C"{
 	void webserver_init() 
 	{
-		webServer->listen();
+		webServer->listen(1000);
 	}
 
 	void webserver_appcall()
