@@ -23,16 +23,15 @@ void MyWebServer::run()
 	WiFi.run();
 }
 
-void MyWebServer::handleRequest(String *request)
+void MyWebServer::handleRequest(struct uip_conn *uip_conn)
 {
-	//struct webserver_state *s = &(uip_conn->appstate);
-	//char * inputBuf = s->inputbuf;
-	//if(uip_connected()) {
-		//PSOCK_INIT(&s->p, (unsigned char *)inputBuf, sizeof(inputBuf));
-	//}
-	//String *request	= new String(inputBuf);
+	struct webserver_state *s = &(uip_conn->appstate);
+	char * inputBuf = s->inputbuf;
+	if(uip_connected()) {
+		PSOCK_INIT(&s->p, (unsigned char *)inputBuf, sizeof(inputBuf));
+	}
+	String *request	= new String(inputBuf);
 
-	//webServer->handleRequest(request);
 
 }
 
