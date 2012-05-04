@@ -1,11 +1,14 @@
 #include "MyWebServer.h"
-#include "uip.h"
 #define LISTEN_PORT 8080
+extern "C"
+{
+#include "uip.h"
+}
 
 MyWebServer::MyWebServer(Router * router)
 {
-	//uip_listen(HTONS(80));
-	//this->router_ = router;
+	uip_listen(HTONS(80));
+	this->router_ = router;
 
 }
 
