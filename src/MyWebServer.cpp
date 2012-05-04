@@ -1,17 +1,21 @@
 #include "MyWebServer.h"
 #include "WiShield.h"
-#define LISTEN_PORT 8080
 extern "C"
 {
 #include "uip.h"
+#include "MyConfig.h"
 }
 
 MyWebServer::MyWebServer(Router * router)
 {
 	WiFi.init();
-	uip_listen(HTONS(80));
 	this->router_ = router;
 
+}
+
+void MyWebServer::listen(uint16_t port)
+{
+	uip_listen(HTONS(port));
 }
 
 void MyWebServer::run()
@@ -21,5 +25,14 @@ void MyWebServer::run()
 
 void MyWebServer::handleRequest(String *request)
 {
+	//struct webserver_state *s = &(uip_conn->appstate);
+	//char * inputBuf = s->inputbuf;
+	//if(uip_connected()) {
+		//PSOCK_INIT(&s->p, (unsigned char *)inputBuf, sizeof(inputBuf));
+	//}
+	//String *request	= new String(inputBuf);
+
+	//webServer->handleRequest(request);
 
 }
+

@@ -1,6 +1,5 @@
 #define WIRELESS_MODE_INFRA	1
 #define WIRELESS_MODE_ADHOC	2
-extern "C"{
 // Wireless configuration parameters ----------------------------------------
  unsigned char local_ip[] = {192,168,1,7};	// IP address of WiShield
  unsigned char gateway_ip[] = {192,168,1,1};	// router or gateway IP address
@@ -27,4 +26,3 @@ unsigned char wireless_mode = WIRELESS_MODE_INFRA;
 
 unsigned char ssid_len;
 unsigned char security_passphrase_len;
-}

@@ -1,5 +1,6 @@
 #include "Router.h"
 #include "arduino.h"
+#define LISTEN_PORT 8080
 extern "C"{
 	void webserver_init();
 	void webserver_appcall();
@@ -7,11 +8,12 @@ extern "C"{
 class MyWebServer
 {
 	public:
-	MyWebServer(Router *router);
-	void run();
-	void handleRequest(String *request);
+		MyWebServer(Router *router);
+		void listen(uint16_t port = LISTEN_PORT);
+		void run();
+		void handleRequest(String *request);
 	private:
-	Router *router_;
+		Router *router_;
 	
 };
 
