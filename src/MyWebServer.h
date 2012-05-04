@@ -11,7 +11,7 @@ class MyWebServer
 		MyWebServer(Router *router);
 		void listen(uint16_t port = LISTEN_PORT);
 		void run();
-		void handleRequest(struct uip_conn *uip_conn);
+		void handleRequest();
 	private:
 		Router *router_;
 	

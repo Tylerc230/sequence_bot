@@ -4,6 +4,7 @@ static MyWebServer *webServer = NULL;
 
 void setup()
 {
+	Serial.begin(9600);
 	webServer = new MyWebServer(NULL);
 }
 
@@ -20,5 +21,6 @@ extern "C"{
 
 	void webserver_appcall()
 	{
+		webServer->handleRequest();
 	}
 }

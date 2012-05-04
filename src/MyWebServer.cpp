@@ -23,7 +23,7 @@ void MyWebServer::run()
 	WiFi.run();
 }
 
-void MyWebServer::handleRequest(struct uip_conn *uip_conn)
+void MyWebServer::handleRequest()
 {
 	struct webserver_state *s = &(uip_conn->appstate);
 	char * inputBuf = s->inputbuf;
