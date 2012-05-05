@@ -1,5 +1,4 @@
 #include "../../src/MyWebServer.h"
-#include "webserver.h"
 static MyWebServer *webServer = NULL;
 
 void setup()
@@ -13,14 +12,3 @@ void loop()
 	webServer->run();
 }
 
-extern "C"{
-	void webserver_init() 
-	{
-		webServer->listen(1000);
-	}
-
-	void webserver_appcall()
-	{
-		webServer->handleRequest();
-	}
-}

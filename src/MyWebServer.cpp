@@ -1,63 +1,30 @@
 #include "MyWebServer.h"
-#include "WiShield.h"
+#include "Arduino.h"
+#define APP_WISERVER
+#include "WiServer.h"
 extern "C"
 {
-#include "uip.h"
 #include "MyConfig.h"
 }
+boolean response(char * url);
 
 MyWebServer::MyWebServer(Router * router)
 {
-	WiFi.init();
+	WiServer.init(response);
+	WiServer.enableVerboseMode(true);
 	this->router_ = router;
 
 }
 
-void MyWebServer::listen(uint16_t port)
-{
-	uip_listen(HTONS(port));
-}
-
 void MyWebServer::run()
 {
-	WiFi.run();
+	WiServer.server_task();
 }
 
-void MyWebServer::handleRequest()
+boolean response(char * url)
 {
-	Serial.println("HERE");
-	webserver_state *s = &(uip_conn->appstate);
-	this->initSocket(s);
-	this->parseRequest(s);
+	Serial.println("here");
+	WiServer.println_P("<html> <body> <h1>My First Heading</h1> <p>My first paragraph.</p> </body> </html> ");
 }
 
-String *MyWebServer::readLine(webserver_state *s)
-{
-	//PSOCK_READTO(&s->p, '\n');
-	//return new String(s->inputbuf);
-	return NULL;
-}
-
-int MyWebServer::parseRequest(webserver_state *s)
-{
-	PSOCK_BEGIN(&s->p);
-	//String * newline = readLine(s);
-	PSOCK_READTO(&s->p, '\n');
-	String * newline = new String(s->inputbuf);
-	unsigned char buffer [200];
-	unsigned int length = min(199, newline->length());
-	newline->getBytes(buffer, length);
-	buffer[length] = '\0';
-	Serial.println((char*)buffer);
-	PSOCK_CLOSE(&s->p);
-	PSOCK_END(&s->p);
-}
-
-void MyWebServer::initSocket(webserver_state * s)
-{
-	char * inputBuf = s->inputbuf;
-	if(uip_connected()) {
-		PSOCK_INIT(&s->p, (unsigned char *)inputBuf, sizeof(inputBuf));
-	}
-}
 
