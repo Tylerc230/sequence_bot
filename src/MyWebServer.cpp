@@ -1,8 +1,6 @@
 #include "MyWebServer.h"
 #include "Arduino.h"
 #include <avr/pgmspace.h>
-#define APP_WISERVER
-#include "WiServer.h"
 extern "C"
 {
 #include "MyConfig.h"
@@ -23,6 +21,8 @@ void MyWebServer::run()
 
 void MyWebServer::request(char *url)
 {
+	Serial.println("in request");
+	this->router_->route(url);
 }
 
 

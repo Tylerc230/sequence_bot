@@ -1,3 +1,5 @@
+#ifndef ROUTER_H
+#define ROUTER_H
 #define kMaxRoutes 20
 typedef void (*RouteFunc)(char *);
 
@@ -14,3 +16,4 @@ private:
 	char * urls[kMaxRoutes];
 	RouteFunc destinations[kMaxRoutes];
 };
+#endif
