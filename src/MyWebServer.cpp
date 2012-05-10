@@ -7,12 +7,10 @@ extern "C"
 {
 #include "MyConfig.h"
 }
-const prog_char html[] PROGMEM  = {"<html> <body> <h1>My First Heading</h1> <p>My first paragraph.</p> </body> </html> "};
-boolean response(char * url);
 
-MyWebServer::MyWebServer(Router * router)
+MyWebServer::MyWebServer(Router * router, boolean (*responseFunc)(char*))
 {
-	WiServer.init(response);
+	WiServer.init(responseFunc);
 	WiServer.enableVerboseMode(true);
 	this->router_ = router;
 
@@ -23,9 +21,8 @@ void MyWebServer::run()
 	WiServer.server_task();
 }
 
-boolean response(char * url)
+void MyWebServer::request(char *url)
 {
-	WiServer.println_P(html);
 }
 
 
