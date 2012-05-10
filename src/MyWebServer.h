@@ -1,3 +1,5 @@
+#define APP_WISERVER
+#include "WiServer.h"
 #include "Router.h"
 class MyWebServer
 {

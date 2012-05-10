@@ -1,5 +1,5 @@
-#include "HashMap.h"
-//typdef void (*RouteFunc)(char *);
+#define kMaxRoutes 20
+typedef void (*RouteFunc)(char *);
 
 class Router
 {
@@ -7,6 +7,10 @@ public:
 	Router();
 	void route(char * url);
 	virtual void initRoutes();
+protected:
+	void addRoute(char * url, RouteFunc destination);
 private:
-	//Hashmap<char *, RouteFunc> *routes;
+	int numRoutes;
+	char * urls[kMaxRoutes];
+	RouteFunc destinations[kMaxRoutes];
 };
