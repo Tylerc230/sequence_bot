@@ -1,6 +1,7 @@
 #include "Router.h"
 #include "WiServer.h"
 #include "Arduino.h"
+#include "alist.h"
 void file_not_found(char * url);
 const prog_char error_404_html[] PROGMEM  = {"<html> <body> <h1>404: NotFound</h1> </body> </html> "};
 Router::Router()
@@ -10,35 +11,25 @@ Router::Router()
 
 void Router::initRoutes()
 {
-	Serial.println("in initRoutes");
-	this->numRoutes = 0;
-
+	this->routes_ = new AList;
 }
 
 void Router::addRoute(char * url, RouteFunc destination)
 {
-	Serial.println("in addRoute");
-	this->urls[this->numRoutes] = url;
-	this->destinations[this->numRoutes] = destination;
-	this->numRoutes++;
-
+	(*this->routes_)[url] = (void *)destination;
 }
 
 void Router::route(char * url)
 {
-	Serial.println("in route");
-	for (int i = 0; i < this->numRoutes; i++ )
+	RouteFunc route = (RouteFunc)(*this->routes_)[url].get_value().oValue;
+	if (route != 0)
 	{
-		char * nextURL = this->urls[i];
-		Serial.println(nextURL);
-		if (strcmp(url, nextURL) == 0)
-		{
-			RouteFunc destination = this->destinations[i];
-			destination(url);
-			return;
-		}
+		route(url);
+
+	}else{
+		file_not_found(url);
 	}
-	file_not_found(url);
+	
 	return;
 }
 

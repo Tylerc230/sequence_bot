@@ -1,8 +1,7 @@
 #ifndef ROUTER_H
 #define ROUTER_H
-#define kMaxRoutes 20
 typedef void (*RouteFunc)(char *);
-
+class AList;
 class Router
 {
 public:
@@ -12,8 +11,6 @@ public:
 protected:
 	void addRoute(char * url, RouteFunc destination);
 private:
-	int numRoutes;
-	char * urls[kMaxRoutes];
-	RouteFunc destinations[kMaxRoutes];
+	AList *routes_;
 };
 #endif
