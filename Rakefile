@@ -15,26 +15,27 @@ end
 task :build_resources do
 	resource_folder = 'resources'
 	resources = []
-	Dir.foreach resource_folder do |filename| 
+	Dir.chdir resource_folder do
+	  Dir.foreach "." do |filename| 
 		resource_info = nil
 		extension = File.extname filename
 		case extension
 		when ''#skip '.' and '..'
 			next
 		when '.html'
-			input_file_path = File.join resource_folder, filename
-			resource_info = add_html input_file_path
+			resource_info = add_html filename
 		else
 			puts 'can\'t handle: ' + filename
 		end
 		resources << resource_info
+	  end
 	end
 	create_resource_declaration_file resources
 	create_resource_map_file resources
 end
 
 def add_html html_path
-	minified_html =  %x(java -jar tools/htmlcompressor-1.5.3.jar #{html_path})
+	minified_html =  %x(java -jar ../tools/htmlcompressor-1.5.3.jar #{html_path})
 	add_resource html_path, minified_html
 end
 
@@ -42,7 +43,7 @@ def add_resource path, data
 	resource_info = Hash.new
 	resource_info['path'] = "/" + path
 	resource_info['data'] = data
-  resource_info['c_var_name'] = path.gsub('.', '_').gsub('/', '_')
+	resource_info['c_var_name'] = path.gsub('.', '_').gsub('/', '_')
 	resource_info
 end
 
