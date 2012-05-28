@@ -6,12 +6,16 @@ extern "C"
 #include "MyConfig.h"
 }
 
-MyWebServer::MyWebServer(Router * router, boolean (*responseFunc)(char*))
+MyWebServer::MyWebServer(boolean (*responseFunc)(char*))
 {
+    this->numRouters_ = 0;
 	WiServer.init(responseFunc);
 	WiServer.enableVerboseMode(true);
-	this->router_ = router;
+}
 
+void MyWebServer::addRouter(Router * router)
+{
+    this->routers_[this->numRouters_++] = router;
 }
 
 void MyWebServer::run()
@@ -21,8 +25,10 @@ void MyWebServer::run()
 
 void MyWebServer::request(char *url)
 {
-	Serial.println("in request");
-	this->router_->route(url);
+    for (int i = 0; i < this->numRouters_; i++) {
+        this->routers_[i]->route(url);
+    }
+
 }
 
 

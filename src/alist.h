@@ -22,13 +22,12 @@ typedef enum __ItemValueType
 class _Generic
 {
 	public:
-		_Generic()
-		{
-		}
+    _Generic(){
+    }
 
-		virtual ~_Generic()
-		{
-		}
+    virtual ~_Generic(){
+        
+    }
 
 	protected:
 		virtual void Destroy() = 0;
@@ -450,12 +449,12 @@ class AList : public _Generic
 
 };
 
-ItemInfo& ItemInfo::operator[] (const int index)
+inline ItemInfo& ItemInfo::operator[] (const int index)
 {
 	return (((AList&)(*m_value.aValue))[index]);
 }
 
-ItemInfo& ItemInfo::operator[] (const char* name)
+inline ItemInfo& ItemInfo::operator[] (const char* name)
 {
 	return (((AList&)(*m_value.aValue))[name]);
 }

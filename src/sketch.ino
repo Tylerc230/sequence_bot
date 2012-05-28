@@ -1,14 +1,22 @@
 #include "../../src/MyWebServer.h"
 #include "RobotRouter.h"
+#include "ResourceRouter.h"
 static MyWebServer *webServer = NULL;
 
 boolean response(char * url);
 void setup()
 {
 	Serial.begin(9600);
-	Router * router = new RobotRouter();
+	webServer = new MyWebServer(request);
+    
+    Router * router = new RobotRouter();
 	router->initRoutes();
-	webServer = new MyWebServer(router, request);
+    webServer->addRouter(router);
+    
+    Router * resourceRouter = new ResourceRouter();
+    resourceRouter->initRoutes();
+    webServer->addRouter(resourceRouter);
+    
 }
 
 void loop()

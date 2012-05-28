@@ -40,7 +40,7 @@ end
 
 def add_resource path, data
 	resource_info = Hash.new
-	resource_info['path'] = path
+	resource_info['path'] = "/" + path
 	resource_info['data'] = data
   resource_info['c_var_name'] = path.gsub('.', '_').gsub('/', '_')
 	resource_info

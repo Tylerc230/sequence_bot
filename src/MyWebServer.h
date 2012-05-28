@@ -4,11 +4,13 @@
 class MyWebServer
 {
 	public:
-		MyWebServer(Router * router, boolean (*responseFunc)(char*));
+		MyWebServer(boolean (*responseFunc)(char*));
+        void addRouter(Router * router);
 		void run();
 		void request(char *url);
 	private:
-		Router *router_;
+        int numRouters_;
+		Router* routers_[20];
 	
 };
 
