@@ -11,10 +11,15 @@
 #include "WiServer.h"
 
 #include "resource_declarations.h"
-
+class Resource{
+    public:
+        Resource(const prog_char* data, size_t length) : data_(data), length_(length){}
+        const prog_char * data_;
+        size_t length_;
+};
 #define MAP_RESOURCE(path, var_name) \
     this->addRoute(path, resource_for_path); \
-    (*resources_)[path] = (void*)var_name;
+    (*resources_)[path] = (void*)new Resource(var_name, sizeof(var_name));
 
 void resource_for_path(char * url);
 
@@ -28,9 +33,11 @@ void ResourceRouter::initRoutes()
 
 void resource_for_path(char * url)
 {
-    const prog_char* resource_data = (prog_char *)(*resources_)[url].get_value().oValue;
+    Resource* resource_data = (Resource *)(*resources_)[url].get_value().oValue;
     if (resource_data != NULL) {
-        WiServer.print_P(resource_data);
+        int length = resource_data->length_;
+        const prog_char *data = resource_data->data_;
+        WiServer.write_P(data, length);
     }
 
 }
