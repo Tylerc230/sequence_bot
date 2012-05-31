@@ -1,7 +1,65 @@
 <html>
 <head>
+  <style type="text/css">
+    .down{
+      transform:rotate(90deg);
+      -ms-transform:rotate(90deg); /* IE 9 */
+      -moz-transform:rotate(90deg); /* Firefox */
+      -webkit-transform:rotate(90deg); /* Safari and Chrome */
+      -o-transform:rotate(90deg); /* Opera */
+    }
+    .up{
+      transform:rotate(-90deg);
+      -ms-transform:rotate(-90deg); /* IE 9 */
+      -moz-transform:rotate(-90deg); /* Firefox */
+      -webkit-transform:rotate(-90deg); /* Safari and Chrome */
+      -o-transform:rotate(-90deg); /* Opera */
+    }
+    .left{
+      transform:rotate(180deg);
+      -ms-transform:rotate(180deg); /* IE 9 */
+      -moz-transform:rotate(180deg); /* Firefox */
+      -webkit-transform:rotate(180deg); /* Safari and Chrome */
+      -o-transform:rotate(180deg); /* Opera */
+    }
+    .right{
+    }
+  </style>
 </head>
 <body>
-<h2>Hiya!</h2>
+  <button  onmousedown="turn_right()" onmouseup="stop_turn_right()"> 
+    <img src="img/arrow.jpg" class="up"/>
+  </button>
+  <p/>
+  <button  onmousedown="turn_right()" onmouseup="stop_turn_right()"> 
+    <img src="img/arrow.jpg" class="left"/>
+  </button>
+  <button  onmousedown="turn_right()" onmouseup="stop_turn_right()"> 
+    <img src="img/arrow.jpg" class="right"/>
+  </button>
+  <p/>
+  <button  onmousedown="turn_right()" onmouseup="stop_turn_right()"> 
+    <img src="img/arrow.jpg" class="down"/>
+  </button>
 </body>
+<script type="text/javascript">
+function turn_right()
+{
+  post_to_url("/robot/turnright")
+}
+
+function stop_turn_right()
+{
+  post_to_url("/robot/stopturnright")
+
+}
+
+function post_to_url(url)
+{
+  xmlHttp = new XMLHttpRequest(); 
+  xmlHttp.open( "GET", url, true );
+  xmlHttp.send( null );
+}
+
+</script>
 </html>
