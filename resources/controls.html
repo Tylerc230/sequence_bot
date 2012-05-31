@@ -27,18 +27,18 @@
   </style>
 </head>
 <body>
-  <button  onmousedown="turn_right()" onmouseup="stop_turn_right()"> 
+  <button  onmousedown="forward()" onmouseup="stop()"> 
     <img src="img/arrow.jpg" class="up"/>
   </button>
   <p/>
-  <button  onmousedown="turn_right()" onmouseup="stop_turn_right()"> 
+  <button  onmousedown="turn_left()" onmouseup="stop()"> 
     <img src="img/arrow.jpg" class="left"/>
   </button>
-  <button  onmousedown="turn_right()" onmouseup="stop_turn_right()"> 
+  <button  onmousedown="turn_right()" onmouseup="stop()"> 
     <img src="img/arrow.jpg" class="right"/>
   </button>
   <p/>
-  <button  onmousedown="turn_right()" onmouseup="stop_turn_right()"> 
+  <button  onmousedown="backward()" onmouseup="stop()"> 
     <img src="img/arrow.jpg" class="down"/>
   </button>
 </body>
@@ -48,9 +48,25 @@ function turn_right()
   post_to_url("/robot/turnright")
 }
 
-function stop_turn_right()
+function turn_left()
 {
-  post_to_url("/robot/stopturnright")
+  post_to_url("/robot/turnleft")
+}
+
+function forward()
+{
+  post_to_url("/robot/forward")
+
+}
+
+function backward()
+{
+  post_to_url("/robot/backward")
+}
+
+function stop()
+{
+  post_to_url("/robot/stop")
 
 }
 
