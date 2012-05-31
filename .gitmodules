@@ -1,3 +1,6 @@
 [submodule "lib/submodules/wishield"]
 	path = lib/submodules/wishield
 	url = git@github.com:Tylerc230/WiShield.git
+[submodule "lib/submodules/arduino_irobot_api"]
+	path = lib/submodules/arduino_irobot_api
+	url = https://github.com/michaelcdillon/Arduino-iRobot-Create-API.git
