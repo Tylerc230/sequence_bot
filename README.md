@@ -26,5 +26,9 @@ The rake command has the following tasks:
 
 Build resources will take any resources (images, htmls pages etc) in the 'resource' folder and make them available over the network via http GET calls. For instance an images located at ./resources/img/arrow.jpg will be available at 'http://192.168.1.7/img/arrow.jpg'.
 
+##Dependencies
+[ino](https://github.com/amperka/ino) is a command line wrapper around the avr-gcc toolchain
+[Arduino-iRobot-Create-api](https://github.com/michaelcdillon/Arduino-iRobot-Create-API) is a c wrapper around serial calls to control the iRobot
+
 
 
