@@ -29,6 +29,6 @@ Build resources will take any resources (images, htmls pages etc) in the 'resour
 ##Dependencies
 [ino](https://github.com/amperka/ino) is a command line wrapper around the avr-gcc toolchain
 [Arduino-iRobot-Create-api](https://github.com/michaelcdillon/Arduino-iRobot-Create-API) is a c wrapper around serial calls to control the iRobot
-
+[htmlcompressor](http://code.google.com/p/htmlcompressor/) is used for html/js minification.
 
 
